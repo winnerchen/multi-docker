@@ -1,0 +1,23 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name":"client",
+      "image": "yihengchen/multi-client",
+      "hostname": "client",
+      "essential": false
+    },{
+      "name": "server",
+      "image": "yihengchen/multi-client",
+      "hostname": "api",
+      "essential": false
+    },{
+      "name": "worker",
+      "image": "yihengchen/multi-worker",
+      "hostname": "worker",
+      "essential": false
+    },{
+      "name": "nginx"
+    }
+  ]
+}
