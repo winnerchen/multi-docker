@@ -1,0 +1,23 @@
+sudo: required
+
+services:
+  - docker
+before_install:
+  - docker build -t yihengchen/react-test -f ./client/Dockerfile.dev ./client
+script:
+  - docker run yihengchen/react-test npm test -- --coverage # -- --coverage just to make sure it exits the test mode
+
+after_success:
+  - docker build -t yihengchen/multi-client ./client
+  - docker build -t yihengchen/multi-nginx ./nginx
+  - docker build -t yihengchen/mulit-server ./server
+  - docker build -t yihengchen/multi-worker ./worker
+
+  #login to docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  #take those images and push them to docker hub
+  - docker push yihengchen/multi-client
+  - docker push yihengchen/multi-nginx
+  - docker push yihengchen/mulit-server
+  - docker push yihengchen/multi-worker
