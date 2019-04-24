@@ -8,7 +8,7 @@ script:
   - docker run yihengchen/react-test npm test -- --coverage # -- --coverage just to make sure it exits the test mode
 
 after_success:
-  - docker build -t yihengchen/multi-client ./client
+  - docker build -t yihengchen/multi-client:v5 ./client
   - docker build -t yihengchen/multi-nginx ./nginx
   - docker build -t yihengchen/mulit-server ./server
   - docker build -t yihengchen/multi-worker ./worker
