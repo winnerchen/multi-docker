@@ -16,7 +16,8 @@ class App extends Component {
             <Link to="/">Home</Link>
             <Link to="/otherpage">Other Page</Link>
           </header>
-          
+          <h3>Hi There!</h3>
+
         </div>
       </Router>
     );
